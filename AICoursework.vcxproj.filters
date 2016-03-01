@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\fl">
+      <UniqueIdentifier>{1fd3d0e2-70bd-4366-8ac2-39dd6073cd07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fl\term\Accumulated.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Activated.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\t\AlgebraicProduct.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\AlgebraicSum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\rule\Antecedent.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\hedge\Any.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Bell.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\Bisector.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\t\BoundedDifference.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\BoundedSum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\Centroid.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\CloningFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Concave.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\rule\Consequent.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\Console.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Constant.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\ConstructionFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Cosine.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\CppExporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\Defuzzifier.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\DefuzzifierFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Discrete.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\t\DrasticProduct.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\DrasticSum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\t\EinsteinProduct.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\EinsteinSum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\Engine.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\Exception.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\Exporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\rule\Expression.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\hedge\Extremely.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\FactoryManager.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\FclExporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\FclImporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\FisExporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\FisImporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\FldExporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\FllExporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\FllImporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Function.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\FunctionFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\fuzzylite.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Gaussian.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\GaussianProduct.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\t\HamacherProduct.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\HamacherSum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\Headers.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\hedge\Hedge.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\HedgeFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\Importer.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\variable\InputVariable.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\IntegralDefuzzifier.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\imex\JavaExporter.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\LargestOfMaximum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Linear.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\Maximum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\MeanOfMaximum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\t\Minimum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\NilpotentMaximum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\t\NilpotentMinimum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\Norm.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\s\NormalizedSum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\hedge\Not.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\Operation.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\variable\OutputVariable.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\PiShape.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Ramp.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Rectangle.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\rule\Rule.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\rule\RuleBlock.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\hedge\Seldom.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Sigmoid.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\SigmoidDifference.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\SigmoidProduct.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\SmallestOfMaximum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\SNorm.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\SNormFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\hedge\Somewhat.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Spike.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\SShape.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Term.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\TermFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\norm\TNorm.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\factory\TNormFactory.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Trapezoid.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\Triangle.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\variable\Variable.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\hedge\Very.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\WeightedAverage.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\WeightedDefuzzifier.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\defuzzifier\WeightedSum.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+    <ClInclude Include="fl\term\ZShape.h">
+      <Filter>Header Files\fl</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

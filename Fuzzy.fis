@@ -1,0 +1,46 @@
+[System]
+Name='Fuzzy'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=0
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='CarSpeed'
+Range=[-1 1]
+NumMFs=5
+MF1='MovingFastLeft':'trimf',[-1.2 -1 -0.4]
+MF2='MovingSlowLeft':'trimf',[-0.8 -0.4 0]
+MF3='Neutral':'trimf',[-0.4 0 0.4]
+MF4='MovingFastRight':'trimf',[0.4 1 1.2]
+MF5='MovingSlowRight':'trimf',[0 0.4 0.8]
+
+[Input2]
+Name='CarPosition'
+Range=[-1 1]
+NumMFs=5
+MF1='NearLeft':'trimf',[-0.8 -0.4 0]
+MF2='Neutral':'trimf',[-0.4 0 0.4]
+MF3='NearRight':'trimf',[0 0.4 0.8]
+MF4='FarLeft':'trimf',[-2 -1 -0.4]
+MF5='FarRight':'trimf',[0.4 1 2]
+
+[Output1]
+Name='SteeringOutput'
+Range=[-1 1]
+NumMFs=7
+MF1='SteerMedLeft':'trimf',[-0.75 -0.5 -0.25]
+MF2='Neutral':'trimf',[-0.2 0 0.2]
+MF3='SteerMedRight':'trimf',[0.25 0.5 0.75]
+MF4='SteerFarLeft':'trimf',[-2 -1 -0.6]
+MF5='SteerNearLeft':'trimf',[-0.4 -0.2 0]
+MF6='SteerNearRight':'trimf',[0 0.2 0.4]
+MF7='SteerFarRight':'trimf',[0.6 1 1.2]
+
+[Rules]

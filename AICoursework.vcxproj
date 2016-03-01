@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{94063E9A-A657-4848-8719-B147EF1B0AEE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>AICoursework</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>fuzzylited.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>libs/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fl\Console.h" />
+    <ClInclude Include="fl\defuzzifier\Bisector.h" />
+    <ClInclude Include="fl\defuzzifier\Centroid.h" />
+    <ClInclude Include="fl\defuzzifier\Defuzzifier.h" />
+    <ClInclude Include="fl\defuzzifier\IntegralDefuzzifier.h" />
+    <ClInclude Include="fl\defuzzifier\LargestOfMaximum.h" />
+    <ClInclude Include="fl\defuzzifier\MeanOfMaximum.h" />
+    <ClInclude Include="fl\defuzzifier\SmallestOfMaximum.h" />
+    <ClInclude Include="fl\defuzzifier\WeightedAverage.h" />
+    <ClInclude Include="fl\defuzzifier\WeightedDefuzzifier.h" />
+    <ClInclude Include="fl\defuzzifier\WeightedSum.h" />
+    <ClInclude Include="fl\Engine.h" />
+    <ClInclude Include="fl\Exception.h" />
+    <ClInclude Include="fl\factory\CloningFactory.h" />
+    <ClInclude Include="fl\factory\ConstructionFactory.h" />
+    <ClInclude Include="fl\factory\DefuzzifierFactory.h" />
+    <ClInclude Include="fl\factory\FactoryManager.h" />
+    <ClInclude Include="fl\factory\FunctionFactory.h" />
+    <ClInclude Include="fl\factory\HedgeFactory.h" />
+    <ClInclude Include="fl\factory\SNormFactory.h" />
+    <ClInclude Include="fl\factory\TermFactory.h" />
+    <ClInclude Include="fl\factory\TNormFactory.h" />
+    <ClInclude Include="fl\fuzzylite.h" />
+    <ClInclude Include="fl\Headers.h" />
+    <ClInclude Include="fl\hedge\Any.h" />
+    <ClInclude Include="fl\hedge\Extremely.h" />
+    <ClInclude Include="fl\hedge\Hedge.h" />
+    <ClInclude Include="fl\hedge\Not.h" />
+    <ClInclude Include="fl\hedge\Seldom.h" />
+    <ClInclude Include="fl\hedge\Somewhat.h" />
+    <ClInclude Include="fl\hedge\Very.h" />
+    <ClInclude Include="fl\imex\CppExporter.h" />
+    <ClInclude Include="fl\imex\Exporter.h" />
+    <ClInclude Include="fl\imex\FclExporter.h" />
+    <ClInclude Include="fl\imex\FclImporter.h" />
+    <ClInclude Include="fl\imex\FisExporter.h" />
+    <ClInclude Include="fl\imex\FisImporter.h" />
+    <ClInclude Include="fl\imex\FldExporter.h" />
+    <ClInclude Include="fl\imex\FllExporter.h" />
+    <ClInclude Include="fl\imex\FllImporter.h" />
+    <ClInclude Include="fl\imex\Importer.h" />
+    <ClInclude Include="fl\imex\JavaExporter.h" />
+    <ClInclude Include="fl\norm\Norm.h" />
+    <ClInclude Include="fl\norm\SNorm.h" />
+    <ClInclude Include="fl\norm\s\AlgebraicSum.h" />
+    <ClInclude Include="fl\norm\s\BoundedSum.h" />
+    <ClInclude Include="fl\norm\s\DrasticSum.h" />
+    <ClInclude Include="fl\norm\s\EinsteinSum.h" />
+    <ClInclude Include="fl\norm\s\HamacherSum.h" />
+    <ClInclude Include="fl\norm\s\Maximum.h" />
+    <ClInclude Include="fl\norm\s\NilpotentMaximum.h" />
+    <ClInclude Include="fl\norm\s\NormalizedSum.h" />
+    <ClInclude Include="fl\norm\TNorm.h" />
+    <ClInclude Include="fl\norm\t\AlgebraicProduct.h" />
+    <ClInclude Include="fl\norm\t\BoundedDifference.h" />
+    <ClInclude Include="fl\norm\t\DrasticProduct.h" />
+    <ClInclude Include="fl\norm\t\EinsteinProduct.h" />
+    <ClInclude Include="fl\norm\t\HamacherProduct.h" />
+    <ClInclude Include="fl\norm\t\Minimum.h" />
+    <ClInclude Include="fl\norm\t\NilpotentMinimum.h" />
+    <ClInclude Include="fl\Operation.h" />
+    <ClInclude Include="fl\rule\Antecedent.h" />
+    <ClInclude Include="fl\rule\Consequent.h" />
+    <ClInclude Include="fl\rule\Expression.h" />
+    <ClInclude Include="fl\rule\Rule.h" />
+    <ClInclude Include="fl\rule\RuleBlock.h" />
+    <ClInclude Include="fl\term\Accumulated.h" />
+    <ClInclude Include="fl\term\Activated.h" />
+    <ClInclude Include="fl\term\Bell.h" />
+    <ClInclude Include="fl\term\Concave.h" />
+    <ClInclude Include="fl\term\Constant.h" />
+    <ClInclude Include="fl\term\Cosine.h" />
+    <ClInclude Include="fl\term\Discrete.h" />
+    <ClInclude Include="fl\term\Function.h" />
+    <ClInclude Include="fl\term\Gaussian.h" />
+    <ClInclude Include="fl\term\GaussianProduct.h" />
+    <ClInclude Include="fl\term\Linear.h" />
+    <ClInclude Include="fl\term\PiShape.h" />
+    <ClInclude Include="fl\term\Ramp.h" />
+    <ClInclude Include="fl\term\Rectangle.h" />
+    <ClInclude Include="fl\term\Sigmoid.h" />
+    <ClInclude Include="fl\term\SigmoidDifference.h" />
+    <ClInclude Include="fl\term\SigmoidProduct.h" />
+    <ClInclude Include="fl\term\Spike.h" />
+    <ClInclude Include="fl\term\SShape.h" />
+    <ClInclude Include="fl\term\Term.h" />
+    <ClInclude Include="fl\term\Trapezoid.h" />
+    <ClInclude Include="fl\term\Triangle.h" />
+    <ClInclude Include="fl\term\ZShape.h" />
+    <ClInclude Include="fl\variable\InputVariable.h" />
+    <ClInclude Include="fl\variable\OutputVariable.h" />
+    <ClInclude Include="fl\variable\Variable.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
