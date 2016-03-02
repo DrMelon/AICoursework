@@ -43,6 +43,13 @@ fl::OutputVariable* carSteering;
 // FIS Rules
 fl::RuleBlock* fuzzyRules;
 
+// Application mode:
+// 0 : "Game" Mode, which involves an interactively-movable racing line for the car to follow.
+// This happens in the SFML window, with simultaneous console output.
+// 1 : "Analysis" Mode, which allows the user to input the starting conditions of the fuzzy system and retrieve output.
+// This happens solely within the console window.
+int ApplicationMode = 0;
+
 // Variables for the game's logic.
 float GameCarPositionRelativeToLine = 0.0f;
 float GameCarVelocityRelativeToLine = 0.0f;
@@ -86,6 +93,13 @@ int main()
 			if (windowEvent.type == sf::Event::Closed)
 			{
 				appWindow->close();
+			}
+			if (windowEvent.type == sf::Event::KeyPressed)
+			{
+				if (windowEvent.key.code == sf::Keyboard::Space)
+				{
+					ApplicationMode = 1;
+				}
 			}
 
 			// Mouse Input: Allow user to drag racing line around
@@ -278,39 +292,89 @@ void SetupGFX()
 
 void DoGameLogic()
 {
-	// If the line has moved, we need to update the car's relative position.
-	GameCarPositionRelativeToLine = ((carRect->getPosition().x) - racingLine->getPosition().x) / 640.0f;
 
-	// Now evaluate current fuzzy state.
-	// Send current car input values to FIS.
-	carVelocity->setInputValue(GameCarVelocityRelativeToLine);
-	carPosition->setInputValue(GameCarPositionRelativeToLine);
+	if (ApplicationMode == 0) // "Game" Mode.
+	{
+		// If the line has moved, we need to update the car's relative position.
+		GameCarPositionRelativeToLine = ((carRect->getPosition().x) - racingLine->getPosition().x) / 640.0f;
 
-	// Resolve the FIS
-	fuzzyLiteEngine->process();
+		// Now evaluate current fuzzy state.
+		// Send current car input values to FIS.
+		carVelocity->setInputValue(GameCarVelocityRelativeToLine);
+		carPosition->setInputValue(GameCarPositionRelativeToLine);
 
-	// Retrieve output via defuzzification
-	carSteering->defuzzify();
+		// Resolve the FIS
+		fuzzyLiteEngine->process();
 
-	// Set game object to use new value
-	GameCarSteering = carSteering->getOutputValue();
+		// Retrieve output via defuzzification
+		carSteering->defuzzify();
 
-	// Write values to console
-	std::cout << "Car Position [VALUE]: " << GameCarPositionRelativeToLine << std::endl;
-	std::cout << "Car Position [FUZZY]: " << carPosition->fuzzify(GameCarPositionRelativeToLine) << std::endl;
+		// Set game object to use new value
+		GameCarSteering = carSteering->getOutputValue();
 
-	std::cout << "Car Velocity [VALUE]: " << GameCarVelocityRelativeToLine << std::endl;
-	std::cout << "Car Velocity [FUZZY]: " << carVelocity->fuzzify(GameCarVelocityRelativeToLine) << std::endl;
+		// Write values to console
+		std::cout << "================================================================" << std::endl;
+		std::cout << "Car Position [VALUE]: " << GameCarPositionRelativeToLine << std::endl;
+		std::cout << "Car Position [FUZZY]: " << carPosition->fuzzify(GameCarPositionRelativeToLine) << std::endl;
+		std::cout << std::endl;
 
-	std::cout << "Car Steering [VALUE]: " << GameCarSteering << std::endl;
-	std::cout << "Car Steering [FUZZY]: " << carSteering->fuzzify(GameCarSteering) << std::endl;
+		std::cout << "Car Velocity [VALUE]: " << GameCarVelocityRelativeToLine << std::endl;
+		std::cout << "Car Velocity [FUZZY]: " << carVelocity->fuzzify(GameCarVelocityRelativeToLine) << std::endl;
+		std::cout << std::endl;
 
-	// Car movement calculations:
-	// Steering is a horizontal acceleration in this simplified case.
-	// Velocity adds to position as with ordinary physics.
-	GameCarVelocityRelativeToLine += GameCarSteering;
-	GameCarPositionRelativeToLine += GameCarVelocityRelativeToLine;
+		std::cout << "Car Steering [VALUE]: " << GameCarSteering << std::endl;
+		std::cout << "Car Steering [FUZZY]: " << carSteering->fuzzify(GameCarSteering) << std::endl;
+		std::cout << std::endl;
 
-	// Move graphics to new positions
-	carRect->setPosition(sf::Vector2f((GameCarPositionRelativeToLine * 640.0f) + racingLine->getPosition().x, 480.0f / 2.0f));
+		// Car movement calculations:
+		// Steering is a horizontal acceleration in this simplified case.
+		// Velocity adds to position as with ordinary physics.
+		GameCarVelocityRelativeToLine += GameCarSteering;
+		GameCarPositionRelativeToLine += GameCarVelocityRelativeToLine;
+
+		// Move graphics to new positions
+		carRect->setPosition(sf::Vector2f((GameCarPositionRelativeToLine * 640.0f) + racingLine->getPosition().x, 480.0f / 2.0f));
+	}
+	else if(ApplicationMode == 1) // "Analysis" Mode.
+	{
+		float carSpeedValue, carPositionValue, carSteeringValue;
+		int continuetype;
+		std::cout << "------------------" << std::endl;
+		std::cout << "Analysis Mode." << std::endl;
+		std::cout << "Input Car's Position Relative to Line (-1.0 to 1.0): " << std::endl;
+		std::cin >> carPositionValue;
+		std::cout << "Input Car's Velocity Relative to Line (-1.0 to 1.0): " << std::endl;
+		std::cin >> carSpeedValue;
+		std::cout << std::endl << std::endl;
+		
+		// Solve fuzzy system.
+		carVelocity->setInputValue(carSpeedValue);
+		carPosition->setInputValue(carPositionValue);
+
+		// Resolve the FIS
+		fuzzyLiteEngine->process();
+
+		// Retrieve output via defuzzification
+		carSteering->defuzzify();
+		carSteeringValue = carSteering->getOutputValue();
+
+		// Display output
+		std::cout << "Fuzzy Membership Values: " << std::endl;
+		std::cout << "Position: " << carPosition->fuzzify(GameCarPositionRelativeToLine) << std::endl;
+		std::cout << "Velocity: " << carVelocity->fuzzify(GameCarVelocityRelativeToLine) << std::endl << std::endl;
+		std::cout << "Fuzzy Steering Output: " << carSteering->fuzzify(carSteeringValue) << std::endl << std::endl;
+		
+		std::cout << "Defuzzified Steering Output: " << carSteeringValue << std::endl;
+		std::cout << std::endl;
+		std::cout << "Type 1 to continue analysis, or type 0 to return to active mode." << std::endl;
+		std::cin >> continuetype;
+		if (continuetype == 1)
+		{
+			ApplicationMode = 1;
+		}
+		else
+		{
+			ApplicationMode = 0;
+		}
+	}
 }
