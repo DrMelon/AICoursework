@@ -14,8 +14,14 @@
 // The library was compiled using VS2015 with CMake. 
 // This application was written in VS2015.
 
+// This project makes use of the SFML framework for displaying basic graphics.
+// SFML is available online at http://www.sfml-dev.org/
+
 #include <iostream>
 #include "fl/Headers.h"
+#include "SFML/System.hpp"
+#include "SFML/Window.hpp"
+#include "SFML/Graphics.hpp"
 
 
 // Variables for the simulation
@@ -37,9 +43,80 @@ fl::OutputVariable* carSteering;
 // FIS Rules
 fl::RuleBlock* fuzzyRules;
 
+// Variables for the game's logic.
+float GameCarPositionRelativeToLine = 0.0f;
+float GameCarVelocityRelativeToLine = 0.0f;
+float GameCarSteering = 0.0f;
+
+// Variables for SFML
+sf::RenderWindow* appWindow;
+
+
+
+// Functions
+void SetupSFMLWindow();
+void SetupFuzzyInferenceSystem();
+void DoGameLogic();
 
 // Entry Point
 int main()
+{
+	// Set up application window
+	SetupSFMLWindow();
+
+	// Set up FIS
+	SetupFuzzyInferenceSystem();
+
+	// Main SFML processing loop
+	while (appWindow->isOpen())
+	{
+		// Fetch input for SFML
+		sf::Event windowEvent;
+		while (appWindow->pollEvent(windowEvent))
+		{
+			// Close the window if it receives a close command.
+			if (windowEvent.type == sf::Event::Closed)
+			{
+				appWindow->close();
+			}
+		}
+
+		// Game logic; defuzzification is handled here.
+		DoGameLogic();
+
+		// SFML Window Rendering
+		appWindow->clear();
+
+		// Draw racing line & car
+
+		// Draw fuzzy system logic
+
+		// Send to graphics card
+		appWindow->display();
+
+
+
+
+	}
+
+	// Program ends
+	return 0;
+	
+}
+
+
+// This is where SFML is set up.
+void SetupSFMLWindow()
+{
+	// Set up a 640x480 window.
+	appWindow = new sf::RenderWindow(sf::VideoMode(640, 480), "AI Coursework (J. Brown, 1201717)");
+	
+	// Set framerate limit to 60FPS.
+	appWindow->setFramerateLimit(60);
+}
+
+// This is where the FIS is set up.
+void SetupFuzzyInferenceSystem()
 {
 
 	// First, setting up the FIS.
@@ -146,7 +223,7 @@ int main()
 	}
 
 
-	
+
 	// Apply rules to engine.
 	fuzzyLiteEngine->addRuleBlock(fuzzyRules);
 
@@ -154,34 +231,41 @@ int main()
 	// Centroid defuzzification is appropriate for this FIS; generally, if the car is moving left and is to the left of the line, we'll want to steer rightwards by the combined amount.
 	// Conjunction, Disjunction, Activation and Accumulation/Aggregation functions are simple Min/Max functions.
 	fuzzyLiteEngine->configure("Minimum", "Maximum", "Minimum", "Maximum", "Centroid");
-	
-	float CarX = 0.9f;
-	float CarVX = -0.8f;
-	float CarS = 0.0f;
-
-	while (true)
-	{
-		// Evaluate FIS for given inputs
-		carVelocity->setInputValue(CarVX);
-		carPosition->setInputValue(CarX);
-		fuzzyLiteEngine->process();
-		carSteering->defuzzify();
-		CarS = carSteering->getOutputValue();
-
-		std::cout << "Car Position [VALUE]: " << CarX << std::endl;
-		std::cout << "Car Position [FUZZY]: " << carPosition->fuzzify(CarX) << std::endl;
-
-		std::cout << "Car Velocity [VALUE]: " << CarVX << std::endl;
-		std::cout << "Car Velocity [FUZZY]: " << carVelocity->fuzzify(CarVX) << std::endl;
-
-		std::cout << "Car Steering [VALUE]: " << CarS << std::endl;
-		std::cout << "Car Steering [FUZZY]: " << carSteering->fuzzify(CarS) << std::endl;
-
-		// Car movement calcs
-		CarVX += CarS;
-		CarX += CarVX;
 
 
-	}
-	
+}
+
+// This function handles the game's logic.
+
+void DoGameLogic()
+{
+	// Firstly, evaluate the current state of the FIS.
+	// Send current car input values to FIS.
+	carVelocity->setInputValue(GameCarVelocityRelativeToLine);
+	carPosition->setInputValue(GameCarPositionRelativeToLine);
+
+	// Resolve the FIS
+	fuzzyLiteEngine->process();
+
+	// Retrieve output via defuzzification
+	carSteering->defuzzify();
+
+	// Set game object to use new value
+	GameCarSteering = carSteering->getOutputValue();
+
+	// Write values to console
+	std::cout << "Car Position [VALUE]: " << GameCarPositionRelativeToLine << std::endl;
+	std::cout << "Car Position [FUZZY]: " << carPosition->fuzzify(GameCarPositionRelativeToLine) << std::endl;
+
+	std::cout << "Car Velocity [VALUE]: " << GameCarVelocityRelativeToLine << std::endl;
+	std::cout << "Car Velocity [FUZZY]: " << carVelocity->fuzzify(GameCarVelocityRelativeToLine) << std::endl;
+
+	std::cout << "Car Steering [VALUE]: " << GameCarSteering << std::endl;
+	std::cout << "Car Steering [FUZZY]: " << carSteering->fuzzify(GameCarSteering) << std::endl;
+
+	// Car movement calculations:
+	// Steering is a horizontal acceleration in this simplified case.
+	// Velocity adds to position as with ordinary physics.
+	GameCarVelocityRelativeToLine += GameCarSteering;
+	GameCarPositionRelativeToLine += GameCarVelocityRelativeToLine;
 }
