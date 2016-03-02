@@ -47,15 +47,20 @@ fl::RuleBlock* fuzzyRules;
 float GameCarPositionRelativeToLine = 0.0f;
 float GameCarVelocityRelativeToLine = 0.0f;
 float GameCarSteering = 0.0f;
+float GameLinePosition = 0.0f;
+bool MousePressed = false;
 
 // Variables for SFML
 sf::RenderWindow* appWindow;
 
-
+// Variables for rendering shapes
+sf::RectangleShape* carRect;
+sf::RectangleShape* racingLine;
 
 // Functions
 void SetupSFMLWindow();
 void SetupFuzzyInferenceSystem();
+void SetupGFX();
 void DoGameLogic();
 
 // Entry Point
@@ -66,6 +71,9 @@ int main()
 
 	// Set up FIS
 	SetupFuzzyInferenceSystem();
+
+	// Set up graphics
+	SetupGFX();
 
 	// Main SFML processing loop
 	while (appWindow->isOpen())
@@ -79,6 +87,23 @@ int main()
 			{
 				appWindow->close();
 			}
+
+			// Mouse Input: Allow user to drag racing line around
+			if (windowEvent.type == sf::Event::MouseButtonPressed)
+			{
+				MousePressed = true;
+				racingLine->setPosition(sf::Vector2f(windowEvent.mouseButton.x, 0));
+				
+			}
+			if (windowEvent.type == sf::Event::MouseButtonReleased)
+			{
+				MousePressed = false;
+			}
+			if (windowEvent.type == sf::Event::MouseMoved && MousePressed)
+			{
+				racingLine->setPosition(sf::Vector2f(windowEvent.mouseMove.x, 0));
+			}
+
 		}
 
 		// Game logic; defuzzification is handled here.
@@ -88,6 +113,8 @@ int main()
 		appWindow->clear();
 
 		// Draw racing line & car
+		appWindow->draw(*racingLine);
+		appWindow->draw(*carRect);
 
 		// Draw fuzzy system logic
 
@@ -111,8 +138,8 @@ void SetupSFMLWindow()
 	// Set up a 640x480 window.
 	appWindow = new sf::RenderWindow(sf::VideoMode(640, 480), "AI Coursework (J. Brown, 1201717)");
 	
-	// Set framerate limit to 60FPS.
-	appWindow->setFramerateLimit(60);
+	// Set framerate limit to 30FPS.
+	appWindow->setFramerateLimit(30);
 }
 
 // This is where the FIS is set up.
@@ -235,11 +262,26 @@ void SetupFuzzyInferenceSystem()
 
 }
 
+// This function sets up the game's graphics
+void SetupGFX()
+{
+	carRect = new sf::RectangleShape(sf::Vector2f(16, 32));
+	carRect->setFillColor(sf::Color::Red);
+	carRect->setPosition(sf::Vector2f(640.0f / 2.0f, 480.0f / 2.0f));
+
+	racingLine = new sf::RectangleShape(sf::Vector2f(4, 480));
+	racingLine->setFillColor(sf::Color::White);
+	racingLine->setPosition(sf::Vector2f(640.0f / 2.0f, 0.0f));
+}
+
 // This function handles the game's logic.
 
 void DoGameLogic()
 {
-	// Firstly, evaluate the current state of the FIS.
+	// If the line has moved, we need to update the car's relative position.
+	GameCarPositionRelativeToLine = ((carRect->getPosition().x) - racingLine->getPosition().x) / 640.0f;
+
+	// Now evaluate current fuzzy state.
 	// Send current car input values to FIS.
 	carVelocity->setInputValue(GameCarVelocityRelativeToLine);
 	carPosition->setInputValue(GameCarPositionRelativeToLine);
@@ -268,4 +310,7 @@ void DoGameLogic()
 	// Velocity adds to position as with ordinary physics.
 	GameCarVelocityRelativeToLine += GameCarSteering;
 	GameCarPositionRelativeToLine += GameCarVelocityRelativeToLine;
+
+	// Move graphics to new positions
+	carRect->setPosition(sf::Vector2f((GameCarPositionRelativeToLine * 640.0f) + racingLine->getPosition().x, 480.0f / 2.0f));
 }
