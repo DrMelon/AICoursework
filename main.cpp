@@ -55,6 +55,9 @@ float GameCarPositionRelativeToLine = 0.0f;
 float GameCarVelocityRelativeToLine = 0.0f;
 float GameCarSteering = 0.0f;
 float GameLinePosition = 0.0f;
+
+// Timescale is a small number to allow the user to observe the changes in the car's velocity. Otherwise, the car moves too fast.
+float Timescale = 0.1f;
 bool MousePressed = false;
 
 // Variables for SFML
@@ -99,6 +102,19 @@ int main()
 				if (windowEvent.key.code == sf::Keyboard::Space)
 				{
 					ApplicationMode = 1;
+				}
+
+				// Toggle the timescale value.
+				if (windowEvent.key.code == sf::Keyboard::Z)
+				{
+					if (Timescale < 1)
+					{
+						Timescale = 1.0f;
+					}
+					else
+					{
+						Timescale = 0.1f;
+					}
 				}
 			}
 
@@ -152,8 +168,8 @@ void SetupSFMLWindow()
 	// Set up a 640x480 window.
 	appWindow = new sf::RenderWindow(sf::VideoMode(640, 480), "AI Coursework (J. Brown, 1201717)");
 	
-	// Set framerate limit to 30FPS.
-	appWindow->setFramerateLimit(30);
+	// Set framerate limit to 60FPS.
+	appWindow->setFramerateLimit(60);
 }
 
 // This is where the FIS is set up.
@@ -282,10 +298,12 @@ void SetupGFX()
 	carRect = new sf::RectangleShape(sf::Vector2f(16, 32));
 	carRect->setFillColor(sf::Color::Red);
 	carRect->setPosition(sf::Vector2f(640.0f / 2.0f, 480.0f / 2.0f));
+	carRect->setOrigin(carRect->getSize() / 2.0f);
 
 	racingLine = new sf::RectangleShape(sf::Vector2f(4, 480));
 	racingLine->setFillColor(sf::Color::White);
 	racingLine->setPosition(sf::Vector2f(640.0f / 2.0f, 0.0f));
+	racingLine->setOrigin(racingLine->getSize().x / 2.0f, 0);
 }
 
 // This function handles the game's logic.
@@ -330,7 +348,7 @@ void DoGameLogic()
 		// Steering is a horizontal acceleration in this simplified case.
 		// Velocity adds to position as with ordinary physics.
 		GameCarVelocityRelativeToLine += GameCarSteering;
-		GameCarPositionRelativeToLine += GameCarVelocityRelativeToLine;
+		GameCarPositionRelativeToLine += GameCarVelocityRelativeToLine * Timescale;
 
 		// Move graphics to new positions
 		carRect->setPosition(sf::Vector2f((GameCarPositionRelativeToLine * 640.0f) + racingLine->getPosition().x, 480.0f / 2.0f));
