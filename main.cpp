@@ -378,8 +378,8 @@ void DoGameLogic()
 
 		// Display output
 		std::cout << "Fuzzy Membership Values: " << std::endl;
-		std::cout << "Position: " << carPosition->fuzzify(GameCarPositionRelativeToLine) << std::endl;
-		std::cout << "Velocity: " << carVelocity->fuzzify(GameCarVelocityRelativeToLine) << std::endl << std::endl;
+		std::cout << "Position: " << carPosition->fuzzify(carPositionValue) << std::endl;
+		std::cout << "Velocity: " << carVelocity->fuzzify(carSpeedValue) << std::endl << std::endl;
 		std::cout << "Fuzzy Steering Output: " << carSteering->fuzzify(carSteeringValue) << std::endl << std::endl;
 		
 		std::cout << "Defuzzified Steering Output: " << carSteeringValue << std::endl;
